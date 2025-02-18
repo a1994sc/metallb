@@ -26,7 +26,7 @@ all_binaries = set(["controller", "speaker", "configmaptocrs"])
 all_architectures = set(["amd64", "arm", "arm64", "ppc64le", "s390x"])
 default_network = "kind"
 extra_network = "network2"
-controller_gen_version = "v0.16.3"
+controller_gen_version = "v0.17.2"
 build_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "build")
 kubectl_path = os.path.join(build_path, "kubectl")
 kind_path = os.path.join(build_path, "kind")
@@ -1128,7 +1128,7 @@ def lint(ctx, env="container"):
     convenient to install the golangci-lint binaries on the host. This can be
     achieved by running `inv lint --env host`.
     """
-    version = "1.59.1"
+    version = "1.63.4"
     golangci_cmd = "golangci-lint run --timeout 10m0s ./..."
 
     if env == "container":
@@ -1530,7 +1530,7 @@ def fetch_kubectl():
     curl_command = "curl -o {} -LO https://dl.k8s.io/release/{}/bin/$(go env GOOS)/$(go env GOARCH)/kubectl".format(
         kubectl_path, kubectl_version
     )
-    get_version_command = f"{kubectl_path} version --short"
+    get_version_command = f"{kubectl_path} version"
     fetch_dependency(
         kubectl_path,
         kubectl_version,
