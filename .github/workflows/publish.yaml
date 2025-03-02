@@ -153,22 +153,9 @@ jobs:
           if [[ $exists != "200" ]]; then
             echo "Creating release..."
             # package chart
-            ./cr package charts/$repo
-            # upload chart to github releases
-            ./cr upload \
-                --owner "$owner" \
-                --git-repo "$repo" \
-                --release-name-template "{{ .Name }}-chart-{{ .Version }}" \
-                --token "${{ secrets.GITHUB_TOKEN }}"
-            # Update index and push to github pages
-            ./cr index \
-                --owner "$owner" \
-                --git-repo "$repo" \
-                --index-path index.yaml \
-                --release-name-template "{{ .Name }}-chart-{{ .Version }}" \
-                --push
+            helm package charts/metallb
             # upload chart to quay
-            helm push .cr-release-packages/$repo oci://quay.io/ascii17/chart
+            helm push metallb-0.0.0.tgz oci://quay.io/ascii17/chart
           else
             echo "Release already exists"
           fi
