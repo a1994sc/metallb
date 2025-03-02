@@ -85,7 +85,7 @@ jobs:
         uses: docker/metadata-action@v5.6.1
         with:
           images: |
-            quay.io/metallb/${{ matrix.image }}
+            quay.io/ascii17/${{ matrix.image }}
           # generate Docker tags based on the following events/attributes
           tags: |
             type=ref,event=branch
@@ -168,7 +168,7 @@ jobs:
                 --release-name-template "{{ .Name }}-chart-{{ .Version }}" \
                 --push
             # upload chart to quay
-            helm push .cr-release-packages/$repo oci://quay.io/metallb/chart
+            helm push .cr-release-packages/$repo oci://quay.io/ascii17/chart
           else
             echo "Release already exists"
           fi
