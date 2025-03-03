@@ -154,6 +154,7 @@ jobs:
             echo "Updated chart version"
             sed -i -E 's/0.0.0/'"$tag"'/g' charts/metallb/charts/crds/Chart.yaml
             sed -i -E 's/0.0.0/'"$tag"'/g' charts/metallb/Chart.yaml
+            helm dependency update charts/$repo
             echo "Creating release..."
             # package chart
             ./cr package charts/$repo
