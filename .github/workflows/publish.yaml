@@ -170,7 +170,7 @@ jobs:
                 --release-name-template "{{ .Name }}-chart-{{ .Version }}" \
                 --push
             # upload chart to quay
-            helm push .cr-release-packages/$repo oci://quay.io/ascii17/chart
+            helm push .cr-release-packages/$repo/*.tgz oci://quay.io/ascii17/chart
           else
             echo "Release already exists"
           fi
