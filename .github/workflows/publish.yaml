@@ -152,7 +152,8 @@ jobs:
           helm repo add frrk8s https://metallb.github.io/frr-k8s
           if [[ $exists != "200" ]]; then
             echo "Updated chart version"
-            sed -i -E 's/^((appV|v)ersion: v?)0.0.0/\1'"$tag"'/g' charts/metallb/Chart.yaml
+            sed -i -E 's/0.0.0/'"$tag"'/g' charts/metallb/charts/crds/Chart.yaml
+            sed -i -E 's/0.0.0/'"$tag"'/g' charts/metallb/Chart.yaml
             echo "Creating release..."
             # package chart
             ./cr package charts/$repo
